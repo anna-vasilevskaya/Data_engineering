@@ -88,3 +88,12 @@ analysis of dataset
 `python -u. \data_engineering\data_loader.py`
 ### Image for comand `print(raw_data.head(10))`:
 ![Installation Conda](data_engineering/images/head(10).png)
+### To save dataset how dataset.parqet execute:
+`poetry add pyarrow`
+### To get information about data type in dataset execute:
+`print(raw_data.info())`
+#### Convert data types as needed: replace object with category, downsize int and float types, and change Date of Observation column from object to datetime64[ns]
+### To check the changes execute:
+`print(raw_data.info())`
+### To save dataset execute:
+`raw_data.to_parquet("data/raw/dataset.parquet", index=False)`
