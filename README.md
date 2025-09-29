@@ -81,15 +81,16 @@ analysis of dataset
 4.	`make requirements`
 ### In VSCode in Terminal execute:
 1.	`conda activate base`
-2.	`cd. \data_engineering\`
+2.	`cd .\data_engineering\`
 3.	`poetry env activate`
 4.	Ctrl+C Ctrl+V file path
 ### To activate code from data_loader.py execute:
-`python -u. \data_engineering\data_loader.py`
+`python -u .\data_engineering\data_loader.py`
 ### Image for comand `print(raw_data.head(10))`:
 ![Installation Conda](data_engineering/images/head(10).png)
 ### To save dataset how dataset.parqet execute:
 `poetry add pyarrow`
+`poetry update package`
 ### To get information about data type in dataset execute:
 `print(raw_data.info())`
 #### Convert data types as needed: replace object with category, downsize int and float types, and change Date of Observation column from object to datetime64[ns]
