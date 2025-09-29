@@ -12,20 +12,21 @@ print(raw_data.head(10)) # выводим на экран первые 10 стр
 print(raw_data.info()) # выводим информацию о датафрейме
 
 # приведение типов
-raw_data['Date of Observation'] = pd.to_datetime(raw_data['Date of Observation'], format='%d-%m-%Y')
 raw_data['Observation ID'] = raw_data['Observation ID'].astype('uint16')
-raw_data['Observed Length (m)'] = raw_data['Observed Length (m)'].astype('float16')
-raw_data['Observed Weight (kg)'] = raw_data['Observed Weight (kg)'].astype('float16')
 raw_data['Common Name'] = raw_data['Common Name'].astype('category')
 raw_data['Scientific Name'] = raw_data['Scientific Name'].astype('category')
 raw_data['Family'] = raw_data['Family'].astype('category')
 raw_data['Genus'] = raw_data['Genus'].astype('category')
+raw_data['Observed Length (m)'] = raw_data['Observed Length (m)'].astype('float16')
+raw_data['Observed Weight (kg)'] = raw_data['Observed Weight (kg)'].astype('float16')
 raw_data['Age Class'] = raw_data['Age Class'].astype('category')
 raw_data['Sex'] = raw_data['Sex'].astype('category')
+raw_data['Date of Observation'] = pd.to_datetime(raw_data['Date of Observation'], format='%d-%m-%Y')
 raw_data['Country/Region'] = raw_data['Country/Region'].astype('category')
 raw_data['Habitat Type'] = raw_data['Habitat Type'].astype('category')
 raw_data['Conservation Status'] = raw_data['Conservation Status'].astype('category')
 raw_data['Observer Name'] = raw_data['Observer Name'].astype('category')
+raw_data['Notes'] = raw_data['Notes'].astype('object') # оставляем как object, так как там могут быть длинные тексты
 
 print(raw_data.info()) # выводим информацию о датафрейме после приведения типов
 
