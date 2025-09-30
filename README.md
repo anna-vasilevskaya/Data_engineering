@@ -89,8 +89,8 @@ analysis of dataset
 ### Image for comand `print(raw_data.head(10))`:
 ![Installation Conda](data_engineering/images/head(10).png)
 ### To save dataset how dataset.parqet execute:
-`poetry add pyarrow`
-`poetry update package`
+1. `poetry add pyarrow`
+2. `poetry update package`
 ### To get information about data type in dataset execute:
 `print(raw_data.info())`
 ### Image for comand `print(raw_data.info())`:
