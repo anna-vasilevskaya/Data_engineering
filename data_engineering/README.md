@@ -87,12 +87,12 @@ description [A short description of the project]: Dataset analysis from Google D
 `poetry update package`
 ### To get information about data type in dataset execute:
 `print(raw_data.info())`
-# Image for comand `print(raw_data.info())`:
+### Image for comand `print(raw_data.info())`:
 ![Installation Conda](images/types_before.png)
 #### Convert data types as needed: replace object with category, downsize int and float types, and change Date of Observation column from object to datetime64[ns]
 ### To check the changes execute:
 `print(raw_data.info())`
-# Image for comand `print(raw_data.info())`:
+### Image for comand `print(raw_data.info())`:
 ![Installation Conda](images/types_after.png)
 ### To save dataset execute:
 `raw_data.to_parquet("data/raw/dataset.parquet", index=False)`
