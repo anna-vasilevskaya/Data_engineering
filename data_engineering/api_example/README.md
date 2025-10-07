@@ -24,7 +24,7 @@ poetry run python data_engineering/api_example/api_reader.py
 ### Image for comand `users = load_osf_users(API_URL, max_pages=50, page_size=10)`
 ![Installation Conda](/data_engineering/api_example/images_users/users_info.jpg)
 
-### Image for comacd `print(df["full_name"].head(10))`
+### Image for comand `print(df["full_name"].head(10))`
 ![Installation Conda](/data_engineering/api_example/images_users/users_head(10).jpg)
 
 ### Output

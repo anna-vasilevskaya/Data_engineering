@@ -33,7 +33,7 @@ analysis of dataset
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
-├── api_exanmple 
+├── api_example 
 │   │
 │   ├── api_reader.py  <- Simple script fetches users from Open Science Framework
 │   │            
@@ -45,7 +45,7 @@ analysis of dataset
     │
     ├── config.py               <- Store useful variables and configuration
     │
-    ├── data_loader.py              <- Scripts to download or generate data
+    ├── data_loader.py          <- Scripts to download or generate data
     │
     ├── import_dataset.py
     │
