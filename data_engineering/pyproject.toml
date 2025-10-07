@@ -32,6 +32,7 @@ dependencies = [
     "typer",
     "wget (>=3.2,<4.0)",
     "pyarrow (>=21.0.0,<22.0.0)",
+    "requests (>=2.32.5,<3.0.0)",
 ]
 requires-python = "==3.13.5"
 

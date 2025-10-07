@@ -33,6 +33,12 @@ analysis of dataset
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
+├── api_exanmple 
+│   │
+│   ├── api_reader.py  <- Simple script fetches users from Open Science Framework
+│   │            
+│   └── data           <- users.csv and users.parquet
+│
 └── data_engineering   <- Source code for use in this project.
     │
     ├── __init__.py             <- Makes data_engineering a Python module
@@ -50,4 +56,9 @@ analysis of dataset
 
 --------
 ### Links to Readme files
+
+#### Load dataset
  [DataLoader](data_engineering/docs/DataLoader.md)
+
+#### Simple script fetches users from Open Science Framework
+ [README.md](data_engineering/api_example/README.md)
