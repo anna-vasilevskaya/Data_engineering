@@ -67,8 +67,8 @@ if users:
     df = pd.DataFrame(users) # Конвертируем список словарей в DataFrame pandas
     
     # Сохраняем данные в разных форматах:
-    df.to_csv("api_example/data/users.csv", index=False)        # CSV для читаемости
-    df.to_parquet("api_example/data/users.parquet", index=False) # Parquet для эффективности
+    df.to_csv("api_example/data/raw/users.csv", index=False)        # CSV для читаемости
+    df.to_parquet("api_example/data/raw/users.parquet", index=False) # Parquet для эффективности
     
     print(df.info()) # Выводим информацию о структуре данных
 

@@ -46,7 +46,7 @@ def extract_orcid(social: Any) -> Optional[str]:
     return None
 
 
-def parse_users(input_folder: str = "data/raw/", output_folder: str = "data/processed/") -> None:
+def parse_users(input_folder: str = "api_example/data/raw/", output_folder: str = "api_example/data/processed/") -> None:
     """
     Основная функция для очистки и обработки данных пользователей.
     
@@ -87,8 +87,8 @@ def parse_users(input_folder: str = "data/raw/", output_folder: str = "data/proc
 
 if __name__ == "__main__": # Создает необходимые директории и запускает обработку данных.
     import os
-    os.makedirs("data/raw", exist_ok=True) # Для исходных данных
-    os.makedirs("data/processed", exist_ok=True) # Для обработанных данных
+    os.makedirs("api_example/data/raw", exist_ok=True) # Для исходных данных
+    os.makedirs("api_example/data/processed", exist_ok=True) # Для обработанных данных
     parse_users() # Запуск основной функции обработки
 
 

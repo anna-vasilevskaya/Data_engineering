@@ -33,11 +33,23 @@ analysis of dataset
 ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
 │   └── figures        <- Generated graphics and figures to be used in reporting
 │
+├── data_parser 
+│   │
+│   ├── data_parser.py  <- Parser that loads `api_example/data/raw/users.csv` created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists)
+│   │    
+│   └── README.md
+│
 ├── api_example 
 │   │
 │   ├── api_reader.py  <- Simple script fetches users from Open Science Framework
-│   │            
-│   └── data           <- users.csv and users.parquet
+│   │    
+│   ├── images_users
+│   │ 
+│   ├── README.md
+│   │  
+│   └── data           
+│       ├── processed  <- users_clean.csv and users.parqet
+│       └── raw        <- users.csv and users.parquet
 │
 └── data_engineering   <- Source code for use in this project.
     │
@@ -62,3 +74,6 @@ analysis of dataset
 
 #### Simple script fetches users from Open Science Framework
  [README.md](data_engineering/api_example/README.md)
+
+#### Parser that created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists) 
+ [README.md](data_engineering/data_parser/README.md)
