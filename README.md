@@ -72,14 +72,17 @@ analysis of dataset
 #### Load dataset
  [DataLoader](data_engineering/docs/DataLoader.md)
 
-#### Simple script fetches users from Open Science Framework
- [README.md](data_engineering/api_example/README.md)
-
 #### API Reader Example
 **API Source**
 ```
 The Center for Open Science is a nonprofit organization that increases the openness, integrity, and reproducibility of scientific research by developing and maintaining the open source infrastructure OSF to support the entire research lifecycle.
 ```
+
+Simple script fetches users from Open Science Framework
+[README.md](data_engineering/api_example/README.md)
+
+#### API Data Parser Example
+
 Parser that created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists) 
 
 [README.md](data_engineering/data_parser/README.md)
