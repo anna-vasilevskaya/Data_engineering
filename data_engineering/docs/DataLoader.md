@@ -20,19 +20,19 @@ description [A short description of the project]: Dataset analysis from Google D
 4.	Ctrl+C Ctrl+V file path
 # To activate code from data_loader.py execute:
 `python -u. \data_engineering\data_loader.py`
-# Image for comand `print(raw_data.head(10))`:
-![Installation Conda](../images/head(10).png)
+# Image for command `print(raw_data.head(10))`:
+![List of users](../images/head(10).png)
 ### To save dataset how dataset.parqet execute:
 1. `poetry add pyarrow`
 2. `poetry update package`
 ### To get information about data type in dataset execute:
 `print(raw_data.info())`
-### Image for comand `print(raw_data.info())`:
-![Installation Conda](../images/types_before.png)
+### Image for command `print(raw_data.info())`:
+![Types before](../images/types_before.png)
 #### Convert data types as needed: replace object with category, downsize int and float types, and change Date of Observation column from object to datetime64[ns]
 ### To check the changes execute:
 `print(raw_data.info())`
-### Image for comand `print(raw_data.info())`:
-![Installation Conda](../images/types_after.png)
+### Image for command `print(raw_data.info())`:
+![Types after](../images/types_after.png)
 ### To save dataset execute:
 `raw_data.to_parquet("data/raw/dataset.parquet", index=False)`

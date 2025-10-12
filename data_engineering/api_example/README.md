@@ -21,17 +21,17 @@ poetry run python data_engineering/api_example/api_reader.py
   - `load_osf_users(API_URL, max_pages=50, page_size=10)`
 - If timeouts happen, decrease `page_size` or increase the request timeout.
 
-### Image for comand `users = load_osf_users(API_URL, max_pages=50, page_size=10)`
-![Installation Conda](/data_engineering/api_example/images_users/users_info.jpg)
+### Image for command `users = load_osf_users(API_URL, max_pages=50, page_size=10)`
+![Users info loader](/data_engineering/api_example/images_users/users_info.jpg)
 
-### Image for comand `print(df["full_name"].head(10))`
-![Installation Conda](/data_engineering/api_example/images_users/users_head(10).jpg)
+### Image for command `print(df["full_name"].head(10))`
+![List of columns](/data_engineering/api_example/images_users/users_head(10).jpg)
 
 ### Output
 - CSV: `api_example/data/users.csv`
 
 ### Check dataset from "users.csv"
-![Installation Conda](/data_engineering/api_example/images_users/check_users_csv.jpg)
+![Check dateset](/data_engineering/api_example/images_users/check_users_csv.jpg)
 
 ### Docs
 - OSF Users List: https://developer.osf.io/#operation/users_list
