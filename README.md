@@ -86,3 +86,7 @@ Simple script fetches users from Open Science Framework
 Parser that created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists) 
 
 [README.md](data_engineering/data_parser/README.md)
+
+### Link to EDA
+
+[EDA](data_engineering/notebooks/EDA.ipynb)
