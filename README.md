@@ -64,6 +64,8 @@ analysis of dataset
     ├── load_from_kaggle.py
     │
     └── plots.py                <- Code to create visualizations
+    │
+    └── write_to_db.py          <- Write 100 rows from dataset to PostgreSQL  
 ```
 
 --------
@@ -90,3 +92,10 @@ Parser that created by the API reader, selects columns, removes duplicate `id`s,
 ### Link to EDA
 
 [EDA](data_engineering/notebooks/EDA.ipynb)
+
+### Working with PostgreSQL database
+
+[Code - write_to_db.py](data_engineering/data_engineering/write_to_db.py)
+
+
+[README - Database.md](data_engineering/docs/Database.md)
