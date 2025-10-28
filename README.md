@@ -74,6 +74,23 @@ analysis of dataset
 #### Load dataset
  [DataLoader](data_engineering/docs/DataLoader.md)
 
+### Link to EDA
+
+[EDA](data_engineering/notebooks/EDA.ipynb)
+
+[NBViewer](https://nbviewer.org/github/anna-vasilevskaya/Data_engineering/blob/main/data_engineering/notebooks/EDA.ipynb)
+
+[MyBinder](https://mybinder.org/v2/gh/anna-vasilevskaya/Data_engineering/f579a7e7859221552ce0da9a68cf84e1d24ac0aa?urlpath=lab%2Ftree%2Fdata_engineering%2Fnotebooks%2FEDA.ipynb)
+
+[Screenshots of dynamic visualization](data_engineering/notebooks/README.md)
+
+### Working with PostgreSQL database
+
+[Code - write_to_db.py](data_engineering/data_engineering/write_to_db.py)
+
+
+[README - Database.md](data_engineering/docs/Database.md)
+
 #### API Reader Example
 **API Source**
 ```
@@ -88,19 +105,4 @@ Simple script fetches users from Open Science Framework
 Parser that created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists) 
 
 [README.md](data_engineering/data_parser/README.md)
-
-### Link to EDA
-
-[EDA](data_engineering/notebooks/EDA.ipynb)
-
-[NBViewer](https://nbviewer.org/github/anna-vasilevskaya/Data_engineering/blob/main/data_engineering/notebooks/EDA.ipynb)
-
-[MyBinder](https://mybinder.org/v2/gh/anna-vasilevskaya/Data_engineering/f579a7e7859221552ce0da9a68cf84e1d24ac0aa?urlpath=lab%2Ftree%2Fdata_engineering%2Fnotebooks%2FEDA.ipynb)
-
-### Working with PostgreSQL database
-
-[Code - write_to_db.py](data_engineering/data_engineering/write_to_db.py)
-
-
-[README - Database.md](data_engineering/docs/Database.md)
 
