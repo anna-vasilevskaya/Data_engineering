@@ -106,3 +106,37 @@ Parser that created by the API reader, selects columns, removes duplicate `id`s,
 
 [README.md](data_engineering/data_parser/README.md)
 
+## ETL package
+
+```
+etl/
+├── __init__.py        # package metadata
+├── extract.py         # read raw source (CSV/Parquet/URL), validate, save CSV to data/raw
+├── transform.py       # type casting and basic normalization
+├── validate.py        # reusable validations and filesystem helpers
+├── load.py            # write parquet to data/processed and load <=100 rows into DB
+└── main.py            # CLI orchestrator
+```
+
+- Data directories: `data/raw` and `data/processed` are created at runtime under repo root.
+- DB connection uses environment variables: `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`.
+
+### Run
+
+Minimal run (no DB load):
+
+```bash
+python -m  etl.main --source data/raw/dataset.csv --no-db
+```
+
+Load into a DB table (max 100 rows):
+
+```bash
+python -m etl.main --source data/raw/dataset.csv --table-name vasilevskaia
+```
+
+The pipeline will:
+- Extract: read the source and save `data/raw/dataset.csv`.
+- Transform: cast schema (dtypes, dates).
+- Load: write `data/processed/dataset.parquet` and optionally insert up to 100 rows into the target table.
+

@@ -39,7 +39,7 @@ def get_db_connection():
 def create_table_if_not_exists(cursor, table_name):
     create_table_sql = f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        observation_id SMALLINT,
+        observation_id INT PRIMARY KEY,
         common_name VARCHAR(100),
         scientific_name VARCHAR(100),
         family VARCHAR(50),
