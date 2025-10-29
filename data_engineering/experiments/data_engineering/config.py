@@ -21,6 +21,5 @@ try:
     from tqdm import tqdm
 
 
-
 except ModuleNotFoundError:
     pass

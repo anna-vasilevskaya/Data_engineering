@@ -17,9 +17,9 @@ def main(
     output_path: Path = PROCESSED_DATA_DIR / "dataset.parquet",
 ):
     logger.info(f"Reading dataset from {input_path}")
-    
+
     raw_data = load_and_process_dataset(str(input_path))
-    
+
     logger.info(f"Saving processed dataset to {output_path}")
     raw_data.to_parquet(output_path, index=False)
     logger.success("Processing dataset complete.")

@@ -113,4 +113,3 @@ def load_to_db(df: pd.DataFrame, table_name: str) -> int:
             cursor.close()
         finally:
             conn.close()
-

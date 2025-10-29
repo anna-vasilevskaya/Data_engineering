@@ -13,8 +13,10 @@ from .utils import ensure_dir
 def repo_root() -> Path:
     return Path(__file__).resolve().parents[1]
 
+
 def data_root() -> Path:
     return repo_root() / "data"
+
 
 def run_etl(source: str, table_name: str | None, no_db: bool = False) -> None:
     ensure_dir(data_root())
@@ -66,4 +68,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

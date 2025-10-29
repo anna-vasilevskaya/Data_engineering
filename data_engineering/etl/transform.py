@@ -23,4 +23,3 @@ def cast_schema(df: pd.DataFrame) -> pd.DataFrame:
     df["Observer Name"] = df["Observer Name"].astype("category")
     df["Notes"] = df["Notes"].astype("object")
     return df
-

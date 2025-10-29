@@ -27,7 +27,7 @@ def get_db_connection():
             port=os.getenv("DB_PORT"),
             database=os.getenv("DB_NAME"),
             user=os.getenv("DB_USER"),
-            password=os.getenv("DB_PASSWORD")
+            password=os.getenv("DB_PASSWORD"),
         )
         logger.info("Successfully connected to PostgreSQL database")
         return conn
@@ -56,7 +56,7 @@ def create_table_if_not_exists(cursor, table_name):
         notes TEXT
     );
     """
-    
+
     cursor.execute(create_table_sql)
     logger.info(f"Table {table_name} created or already exists")
 
@@ -70,28 +70,30 @@ def insert_data(cursor, table_name, df):
         conservation_status, observer_name, notes
     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
-    
+
     # Convert DataFrame to list of tuples
     data_tuples = []
     for _, row in df.iterrows():
-        data_tuples.append((
-            int(row['Observation ID']),
-            str(row['Common Name']),
-            str(row['Scientific Name']),
-            str(row['Family']),
-            str(row['Genus']),
-            float(row['Observed Length (m)']),
-            float(row['Observed Weight (kg)']),
-            str(row['Age Class']),
-            str(row['Sex']),
-            row['Date of Observation'].date(),
-            str(row['Country/Region']),
-            str(row['Habitat Type']),
-            str(row['Conservation Status']),
-            str(row['Observer Name']),
-            str(row['Notes'])
-        ))
-    
+        data_tuples.append(
+            (
+                int(row["Observation ID"]),
+                str(row["Common Name"]),
+                str(row["Scientific Name"]),
+                str(row["Family"]),
+                str(row["Genus"]),
+                float(row["Observed Length (m)"]),
+                float(row["Observed Weight (kg)"]),
+                str(row["Age Class"]),
+                str(row["Sex"]),
+                row["Date of Observation"].date(),
+                str(row["Country/Region"]),
+                str(row["Habitat Type"]),
+                str(row["Conservation Status"]),
+                str(row["Observer Name"]),
+                str(row["Notes"]),
+            )
+        )
+
     # make batch insert
     cursor.executemany(insert_sql, data_tuples)
     logger.info(f"Inserted {len(data_tuples)} rows into {table_name}")
@@ -99,50 +101,57 @@ def insert_data(cursor, table_name, df):
 
 def main():
     # environment variables
-    required_vars = ["DB_HOST", "DB_PORT", "DB_NAME", "DB_USER", "DB_PASSWORD", "TABLE_NAME"]
+    required_vars = [
+        "DB_HOST",
+        "DB_PORT",
+        "DB_NAME",
+        "DB_USER",
+        "DB_PASSWORD",
+        "TABLE_NAME",
+    ]
     missing_vars = [var for var in required_vars if not os.getenv(var)]
-    
+
     if missing_vars:
         logger.error(f"Missing environment variables: {missing_vars}")
         logger.info("Set environment variables - .env file")
         return 1
-    
+
     table_name = os.getenv("TABLE_NAME")
     data_file = PROCESSED_DATA_DIR / "dataset.parquet"
-    
+
     if not data_file.exists():
         logger.error(f"Data file not found: {data_file}")
         logger.info("Run import_dataset.py to process the data")
         return 1
-    
+
     try:
         logger.info(f"Reading from {data_file}")
         df = pd.read_parquet(data_file)
-        
+
         # Limit max 100 rows
         if len(df) > 100:
             df = df.head(100)
             logger.info(f"Limited to 100 rows")
-        
+
         logger.info(f"Loaded {len(df)} rows of data")
-        
+
         # Connect
         conn = get_db_connection()
         cursor = conn.cursor()
-        
+
         create_table_if_not_exists(cursor, table_name)
-        
+
         insert_data(cursor, table_name, df)
-        
+
         # Finish
         conn.commit()
         logger.success(f"Successfully uploaded data to the table")
-        
+
         cursor.close()
         conn.close()
-        
+
         return 0
-        
+
     except Exception as e:
         logger.error(f"Error during data upload: {e}")
         return 1

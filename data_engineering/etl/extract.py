@@ -27,6 +27,7 @@ REQUIRED_COLUMNS: list[str] = [
     "Notes",
 ]
 
+
 def _detect_format(source: Path | str) -> Literal["csv", "parquet", "unknown"]:
     s = str(source).lower()
     if s.endswith(".csv"):  # simple heuristic
@@ -36,7 +37,9 @@ def _detect_format(source: Path | str) -> Literal["csv", "parquet", "unknown"]:
     return "unknown"
 
 
-def validate_required_columns(df: pd.DataFrame, required: Optional[Iterable[str]] = None) -> None:
+def validate_required_columns(
+    df: pd.DataFrame, required: Optional[Iterable[str]] = None
+) -> None:
     expected = set(required or REQUIRED_COLUMNS)
     missing = [c for c in expected if c not in df.columns]
     if missing:
@@ -69,5 +72,3 @@ def persist_raw_csv(df: pd.DataFrame, data_root: Path) -> Path:
     out_path = raw_dir / "dataset.csv"
     df.to_csv(out_path, index=False)
     return out_path
-
-   
