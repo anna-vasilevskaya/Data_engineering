@@ -14,58 +14,49 @@ analysis of dataset
 ## Project Organization
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- Readme files
-│
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         data_engineering and configuration for tools like black
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── data_parser 
-│   │
-│   ├── data_parser.py  <- Parser that loads `api_example/data/raw/users.csv` created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists)
-│   │    
-│   └── README.md
-│
-├── api_example 
-│   │
-│   ├── api_reader.py  <- Simple script fetches users from Open Science Framework
-│   │    
-│   ├── images_users
-│   │ 
-│   ├── README.md
-│   │  
-│   └── data           
-│       ├── processed  <- users_clean.csv and users.parqet
-│       └── raw        <- users.csv and users.parquet
-│
-└── data_engineering   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes data_engineering a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── data_loader.py          <- Scripts to download or generate data
-    │
-    ├── import_dataset.py
-    │
-    ├── load_from_kaggle.py
-    │
-    └── plots.py                <- Code to create visualizations
-    │
-    └── write_to_db.py          <- Write 100 rows from dataset to PostgreSQL  
+├── README.md                       <- Top-level README
+├── data_engineering/               <- Main project directory
+│   ├── pyproject.toml              <- Project config (dependencies, tools)
+│   ├── poetry.lock
+│   ├── Makefile
+│   ├── docs/                       <- Project docs
+│   │   ├── DataLoader.md
+│   │   └── Database.md
+│   ├── notebooks/                  <- Jupyter notebooks
+│   │   ├── EDA.ipynb
+│   │   └── README.md
+│   ├── images/                     <- Screenshots/figures
+│   ├── reports/
+│   │   └── figures/
+│   ├── tests/
+│   │   ├── test_db.py
+│   │   └── select.sql
+│   ├── data/                       <- Runtime data (created by code)
+│   │   ├── raw/
+│   │   └── processed/
+│   ├── etl/                        <- ETL package (production)
+│   │   ├── __init__.py
+│   │   ├── extract.py
+│   │   ├── transform.py
+│   │   ├── load.py
+│   │   ├── utils.py
+│   │   └── main.py
+│   └── experiments/                <- Legacy/examples (kept for reference)
+│       ├── api_example/
+│       │   ├── api_reader.py
+│       │   ├── data/{raw,processed}
+│       │   ├── images_users/
+│       │   └── README.md
+│       ├── data_parser/
+│       │   ├── data_parser.py
+│       │   └── README.md
+│       └── data_engineering/
+│           ├── config.py
+│           ├── data_loader.py
+│           ├── import_dataset.py
+│           ├── load_from_kaggle.py
+│           ├── plots.py
+│           └── write_to_db.py
 ```
 
 --------
@@ -86,7 +77,7 @@ analysis of dataset
 
 ### Working with PostgreSQL database
 
-[Code - write_to_db.py](data_engineering/data_engineering/write_to_db.py)
+[Code - write_to_db.py](data_engineering/experiments/data_engineering/write_to_db.py)
 
 
 [README - Database.md](data_engineering/docs/Database.md)
@@ -98,27 +89,27 @@ The Center for Open Science is a nonprofit organization that increases the openn
 ```
 
 Simple script fetches users from Open Science Framework
-[README.md](data_engineering/api_example/README.md)
+[README.md](data_engineering/experiments/api_example/README.md)
 
 #### API Data Parser Example
 
 Parser that created by the API reader, selects columns, removes duplicate `id`s, drops empty rows, parse ORCID (id for scientists) 
 
-[README.md](data_engineering/data_parser/README.md)
+[README.md](data_engineering/experiments/data_parser/README.md)
 
 ## ETL package
 
 ```
-etl/
+data_engineering/etl/
 ├── __init__.py        # package metadata
 ├── extract.py         # read raw source (CSV/Parquet/URL), validate, save CSV to data/raw
 ├── transform.py       # type casting and basic normalization
-├── validate.py        # reusable validations and filesystem helpers
 ├── load.py            # write parquet to data/processed and load <=100 rows into DB
+├── utils.py           # filesystem helpers
 └── main.py            # CLI orchestrator
 ```
 
-- Data directories: `data/raw` and `data/processed` are created at runtime under repo root.
+- Data directories: `data_engineering/data/raw` and `data_engineering/data/processed` are created at runtime.
 - DB connection uses environment variables: `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`.
 
 ### Run
@@ -126,17 +117,17 @@ etl/
 Minimal run (no DB load):
 
 ```bash
-python -m  etl.main --source data/raw/dataset.csv --no-db
+python -m data_engineering.etl.main --source data_engineering/data/raw/dataset.csv --no-db
 ```
 
 Load into a DB table (max 100 rows):
 
 ```bash
-python -m etl.main --source data/raw/dataset.csv --table-name vasilevskaia
+python -m data_engineering.etl.main --source data_engineering/data/raw/dataset.csv --table-name vasilevskaia
 ```
 
 The pipeline will:
-- Extract: read the source and save `data/raw/dataset.csv`.
+- Extract: read the source and save `data_engineering/data/raw/dataset.csv`.
 - Transform: cast schema (dtypes, dates).
-- Load: write `data/processed/dataset.parquet` and optionally insert up to 100 rows into the target table.
+- Load: write `data_engineering/data/processed/dataset.parquet` and optionally insert up to 100 rows into the target table.
 

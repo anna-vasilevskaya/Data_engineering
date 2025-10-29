@@ -34,14 +34,14 @@ poetry env activate
 poetry install
 ```
 
-2. Import data:
+2. Process data (ETL - no DB load):
 ```bash
-python -m data_engineering.import_dataset
+python -m data_engineering.etl.main --source data_engineering/data/raw/dataset.csv --no-db
 ```
 
-3. Upload to database:
+3. Upload to database (ETL - max 100 rows):
 ```bash
-python write_to_db.py
+python -m data_engineering.etl.main --source data_engineering/data/raw/dataset.csv --table-name %TABLE_NAME%
 ```
 
 ![Write to DB](../images/write_to_db.jpg)

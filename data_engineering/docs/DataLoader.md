@@ -18,8 +18,8 @@ description [A short description of the project]: Dataset analysis from Google D
 2.	`cd. \data_engineering\`
 3.	`poetry env activate`
 4.	Ctrl+C Ctrl+V file path
-# To activate code from data_loader.py execute:
-`python -u. \data_engineering\data_loader.py`
+# To activate code from data_loader.py execute (experiments):
+`python -u .\data_engineering\experiments\data_engineering\data_loader.py`
 # Image for command `print(raw_data.head(10))`:
 ![List of users](../images/head(10).png)
 ### To save dataset how dataset.parqet execute:
