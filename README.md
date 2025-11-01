@@ -60,9 +60,7 @@ analysis of dataset
 ```
 
 --------
-### Links to Readme files
-
-#### ETL package
+### ETL package
 
 ```
 data_engineering/etl/
@@ -95,6 +93,8 @@ The pipeline will:
 - Extract: read the source and save `data_engineering/data/raw/dataset.csv`.
 - Transform: cast schema (dtypes, dates).
 - Load: write `data_engineering/data/processed/dataset.parquet` and optionally insert up to 100 rows into the target table.
+
+### Links to Readme files
 
 #### Link to EDA
 
