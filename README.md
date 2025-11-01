@@ -26,8 +26,6 @@ analysis of dataset
 │   │   ├── EDA.ipynb
 │   │   └── README.md
 │   ├── images/                     <- Screenshots/figures
-│   ├── reports/
-│   │   └── figures/
 │   ├── tests/
 │   │   ├── test_db.py
 │   │   └── select.sql
